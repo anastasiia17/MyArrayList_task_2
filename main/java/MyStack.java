@@ -1,8 +1,6 @@
 import java.util.EmptyStackException;
-import java.util.Stack;
 
 public class MyStack<T> extends MyArrayList<T> {
-    //private int top;
     private MyArrayList<T> stackArray;
 
     MyStack() {

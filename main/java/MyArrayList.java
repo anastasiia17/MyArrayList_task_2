@@ -7,6 +7,7 @@ public class MyArrayList<T> implements List<T> {
     private int capacity;
     private final int STARTED_MAX_CAPACITY = 10;
     private final int INCREASES_CAPACITY = 10;
+    private final long INTEGER_MAX_VALUE = (long) Math.pow(2, 31) - 1;
 
     MyArrayList() {
         this.capacity = STARTED_MAX_CAPACITY;
@@ -24,11 +25,14 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public void increaseArrayCapacity() {
-        int newCapacity = this.capacity + INCREASES_CAPACITY;
-        Object[] tmp = new Object[newCapacity];
-        System.arraycopy(this.array, 0, tmp, 0, this.capacity);
-        this.array = tmp;
-        this.capacity = newCapacity;
+        if (this.capacity != INTEGER_MAX_VALUE - INCREASES_CAPACITY) {
+            int newCapacity = this.capacity + INCREASES_CAPACITY;
+            Object[] tmp = new Object[newCapacity];
+            System.arraycopy(this.array, 0, tmp, 0, this.capacity);
+            this.array = tmp;
+            this.capacity = newCapacity;
+        } else
+            throw new IndexOutOfBoundsException();
     }
 
 
@@ -130,7 +134,6 @@ public class MyArrayList<T> implements List<T> {
             throw new IllegalArgumentException("Trying get out of bounds element");
         }
         return (T) this.array[index];
-        //return (T) this.array[index];
     }
 
     @Override
@@ -142,7 +145,7 @@ public class MyArrayList<T> implements List<T> {
     public T remove(int index) {
         Object tmp = this.array[index];
         if (this.size == 0) {
-            throw new NullPointerException("The list is empty");
+            throw new IndexOutOfBoundsException("Trying remove element which is out of array's bounds");
         }
         if (index >= this.size || index < 0) {
             throw new IllegalArgumentException("Trying remove element which is out of array's bounds");

@@ -5,30 +5,30 @@ import static org.junit.Assert.*;
 
 public class MyArrayListTest {
 
-    MyArrayList<Integer> MyList = new MyArrayList<>();
+    MyArrayList<Integer> myList = new MyArrayList<>();
 
     @Test
     public void testNullSize() {
-        assertEquals(0, MyList.size());
+        assertEquals(0, myList.size());
     }
 
     @Before
     public void setUp() {
-        MyList.add(2);
-        MyList.add(7);
-        MyList.add(1);
+        myList.add(2);
+        myList.add(7);
+        myList.add(1);
     }
 
     @Test
     public void testIsEmpty() {
-        assertEquals(MyList.isEmpty(), false);
+        assertEquals(myList.isEmpty(), false);
     }
 
 
     @Test
     public void testContains() {
-        assertEquals(MyList.contains(5), false);
-        assertEquals(MyList.contains(1), true);
+        assertEquals(myList.contains(5), false);
+        assertEquals(myList.contains(1), true);
     }
 
     @Test
